@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Blog;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -20,7 +21,9 @@ class HomeController extends Controller
                 $blogs = Blog::where('user_id',Auth::user()->id)->where('title','LIKE','%'.$search_blog.'%')->get();
             }
 
-            return view('home',compact('blogs','search_blog'));
+            $categories = Category::all();
+
+            return view('home',compact('blogs','search_blog','categories'));
 
         }catch (\Exception $e) {
             return redirect()->back()->with('error', 'An error occurred.');
