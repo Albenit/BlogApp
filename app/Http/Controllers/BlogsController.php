@@ -13,6 +13,12 @@ class BlogsController extends Controller
 {
 
     public function createBlog(Request $req){
+        $req->validate([
+            'title' => 'required|max:50',
+            'body' => 'required|max:255',
+            'image' =>  'required',
+        ]);
+
         try {
             $image = $req->file('blog_image');
             $filename = $image->getClientOriginalName();
@@ -47,6 +53,13 @@ class BlogsController extends Controller
     }
 
     public function editBlogById($id,Request $req){
+
+        $req->validate([
+            'title' => 'required|max:50',
+            'body' => 'required|max:255',
+            'image' =>  'required',
+        ]);
+
         try{
             $id = Crypt::decrypt($id);
 
@@ -83,6 +96,5 @@ class BlogsController extends Controller
             return redirect()->back()->with('error', 'An error occurred.');
         }
     }
-
 
 }

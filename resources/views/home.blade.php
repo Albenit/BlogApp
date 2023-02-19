@@ -1,30 +1,62 @@
 @extends('layouts.app')
 
 @section('content')
-    @section('search-box')
-        <div class="my-auto ">
-            <input type="text" class="form-control" placeholder="Search Blog">
+    <div class="shadow-sm" style="background-color: #fffcf5">
+        <div class="container">
+            <div class="row ">
+                <div class="col-12 col-lg-7 my-auto">
+                    <div class="">
+                        <div class="mb-3">
+                            <span style="color:black;font-weight:700; font-size:20px">Create an Art that shows the beauty in everyone's ideas of flaws. </span>
+                        </div>
+                        <div>
+                            <span>Lorem Impsum Lorem Impsum Lorem Impsum Lorem Impsum Lorem Impsum Lorem Impsum Lorem Impsum Lorem Impsum Lorem Impsum Lorem Impsum Lorem Impsum Lorem Impsum Lorem Impsum Lorem Impsum </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-5">
+                    <div class="justify-content-end d-flex my-5" style="">
+                        <img src="{{ url('uploads/lips.jpg') }}" style="height: 350px; width:300px; border-radius:20px " class="card-img-top"/>
+                    </div>
+                </div>
+            </div>
         </div>
-    @endsection
-    <div style="background-color: rgb(214, 214, 214)">
-        <h1>aaa</h1>
-        <h1>aaa</h1>
-        <h1>aaa</h1>
-        <h1>aaa</h1>
-        <h1>aaa</h1>
     </div>
     <div class="container">
-        <div>
+        <div class="justify-content-end d-flex">
+            <form action="{{route('home')}}">
+                <div class="row mt-4">
+                    <div class="col-auto">
+                        <div class="my-auto " style="width 250px">
+                                <input type="text" class="form-control" placeholder="Search Blog" name="search_blog" value="{{$search_blog}}">
+                                <input type="submit" hidden>
+                        </div>
+                    </div>
+                    <div class="col px-0">
+                        <select class="form-select" name="blog_category">
+                            <option value="">All Categories</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                        </select>
+                    </div>
+                    <div class="col-auto">
+                        <button type="submit" class="btn btn-primary">Search</button>
+                    </div>
+    
+                </div>
+            </form>
+        </div>
+        <div class="mt-5">
             <div class="row h-100">
                 @foreach ($blogs as $blog)
-                    <div class="col-3 mb-3">
+                    <div class="col-12 col-md-6 col-xl-3 mb-3">
                         <div class="card">
                             <img src="{{ url('uploads/' . $blog->image) }}" style="height: 200px;" class="card-img-top"
                                 alt="Fissure in Sandstone" />
                             <div class="card-body">
                                 <div class="row">
                                     <div>
-                                        <span class="card-title">{{ $blog->title }}</span>
+                                        <span class="card-title" style="font-weight:700;font-size:18px">{{ $blog->title }}</span>
                                         <span style="cursor: pointer" data-bs-toggle="dropdown" aria-haspopup="true"
                                             aria-expanded="false" v-pre>
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"

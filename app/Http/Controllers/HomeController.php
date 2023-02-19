@@ -9,12 +9,18 @@ use Illuminate\Support\Facades\Auth;
 class HomeController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
         try{
-            $blogs = Blog::where('user_id',Auth::user()->id)->get();
 
-            return view('home',compact('blogs'));
+            $search_blog = $request->search_blog;
+            if(isset($request->blog_category)){
+                $blogs = Blog::where('user_id',Auth::user()->id)->where('title','LIKE','%'.$search_blog.'%')->where('category_id',$request->blog_category)->get();
+            }else{
+                $blogs = Blog::where('user_id',Auth::user()->id)->where('title','LIKE','%'.$search_blog.'%')->get();
+            }
+
+            return view('home',compact('blogs','search_blog'));
 
         }catch (\Exception $e) {
             return redirect()->back()->with('error', 'An error occurred.');
