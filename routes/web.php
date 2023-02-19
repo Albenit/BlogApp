@@ -14,5 +14,21 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
+
+
+
+Auth::routes();
+
+Route::middleware(['auth'])->group(function(){
+
+    require __DIR__.'/partials/blogs.php';
+    require __DIR__.'/partials/categories.php';
+
+
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+});
+
+
