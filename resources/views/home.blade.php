@@ -7,16 +7,20 @@
                 <div class="col-12 col-lg-7 my-auto">
                     <div class="">
                         <div class="mb-3">
-                            <span style="color:black;font-weight:700; font-size:20px">Create an Art that shows the beauty in everyone's ideas of flaws. </span>
+                            <span style="color:black;font-weight:700; font-size:20px">Create an Art that shows the beauty in
+                                everyone's ideas of flaws. </span>
                         </div>
                         <div>
-                            <span>Lorem Impsum Lorem Impsum Lorem Impsum Lorem Impsum Lorem Impsum Lorem Impsum Lorem Impsum Lorem Impsum Lorem Impsum Lorem Impsum Lorem Impsum Lorem Impsum Lorem Impsum Lorem Impsum </span>
+                            <span>Lorem Impsum Lorem Impsum Lorem Impsum Lorem Impsum Lorem Impsum Lorem Impsum Lorem Impsum
+                                Lorem Impsum Lorem Impsum Lorem Impsum Lorem Impsum Lorem Impsum Lorem Impsum Lorem Impsum
+                            </span>
                         </div>
                     </div>
                 </div>
                 <div class="col-12 col-lg-5">
                     <div class="justify-content-end d-flex my-5" style="">
-                        <img src="{{ url('uploads/lips.jpg') }}" style="height: 350px; width:300px; border-radius:20px " class="card-img-top"/>
+                        <img src="{{ url('uploads/lips.jpg') }}" style="height: 350px; width:300px; border-radius:20px "
+                            class="card-img-top" />
                     </div>
                 </div>
             </div>
@@ -24,25 +28,27 @@
     </div>
     <div class="container">
         <div class="justify-content-end d-flex">
-            <form action="{{route('home')}}">
+            <form action="{{ route('home') }}">
                 <div class="row mt-4">
                     <div class="col-auto">
                         <div class="my-auto " style="width 250px">
-                                <input type="text" class="form-control" placeholder="Search Blog" name="search_blog" value="{{$search_blog}}">
-                                <input type="submit" hidden>
+                            <input type="text" class="form-control" placeholder="Search Blog" name="search_blog"
+                                value="{{ $search_blog }}">
+                            <input type="submit" hidden>
                         </div>
                     </div>
                     <div class="col px-0">
                         <select class="form-select" name="blog_category">
                             <option value="">All Categories</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
+                            @foreach ($categories as $category)
+                                <option value="{{ $category->id }}">{{ $category->category_name }}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="col-auto">
                         <button type="submit" class="btn btn-primary">Search</button>
                     </div>
-    
+
                 </div>
             </form>
         </div>
@@ -56,8 +62,9 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div>
-                                        <span class="card-title" style="font-weight:700;font-size:18px">{{ $blog->title }}</span>
-                                        <span style="cursor: pointer" data-bs-toggle="dropdown" aria-haspopup="true"
+                                        <span class="card-title"
+                                            style="font-weight:700;font-size:18px">{{ $blog->title }}</span>
+                                        <span class="" style="cursor: pointer" data-bs-toggle="dropdown" aria-haspopup="true"
                                             aria-expanded="false" v-pre>
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                 fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
@@ -79,6 +86,7 @@
 
                                 </div>
                                 <p class="card-text">{{ $blog->body }}.</p>
+                                <p class="text-end mb-0" style="font-size: 12px">{{ $blog->published_at }}</p>
                             </div>
                         </div>
                     </div>

@@ -13,13 +13,14 @@ class BlogsController extends Controller
 {
 
     public function createBlog(Request $req){
-        $req->validate([
-            'title' => 'required|max:50',
-            'body' => 'required|max:255',
-            'image' =>  'required',
+
+       $req->validate([
+            'blog_title' => 'required|max:50',
+            'blog_body' => 'required|max:255',
+            'blog_image' => 'required',
         ]);
 
-        try {
+        // try {
             $image = $req->file('blog_image');
             $filename = $image->getClientOriginalName();
 
@@ -34,9 +35,10 @@ class BlogsController extends Controller
 
             return redirect()->route('home');
 
-        } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'An error occurred.');
-        }
+        // } catch (\Exception $e) {
+        //     return $e->getMessage();
+        //     return redirect()->back()->with('error', 'An error occurred.');
+        // }
     }
 
     public function editBlogView($id){
@@ -55,9 +57,9 @@ class BlogsController extends Controller
     public function editBlogById($id,Request $req){
 
         $req->validate([
-            'title' => 'required|max:50',
-            'body' => 'required|max:255',
-            'image' =>  'required',
+            'blog_title' => 'required|max:50',
+            'blog_body' => 'required|max:255',
+            'blog_image' => 'required',
         ]);
 
         try{
