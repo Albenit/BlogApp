@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::view('/create-blog-view','partials.create-blog-view')->name('create-blog-view');
+
 Route::get('/edit-blog-view/{id}',[BlogsController::class,'editBlogView'])->name('edit-blog-view');
 
 Route::post('/save-blog',[BlogsController::class,'createBlog'])->name('save-blog');
