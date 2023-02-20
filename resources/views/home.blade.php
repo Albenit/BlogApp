@@ -57,13 +57,13 @@
                 @foreach ($blogs as $blog)
                     <div class="col-12 col-md-6 col-xl-3 mb-3">
                         <div class="card">
-                            <img src="{{ url('uploads/' . $blog->image) }}" style="height: 200px;" class="card-img-top"
+                            <img src="{{ url('storage/' . $blog->image) }}" style="height: 200px;" class="card-img-top"
                                 alt="Fissure in Sandstone" />
                             <div class="card-body">
                                 <div class="row">
-                                    <div>
+                                    <div class="d-flex justify-content-between">
                                         <span class="card-title"
-                                            style="font-weight:700;font-size:18px">{{ $blog->title }}</span>
+                                            style="font-weight:700;font-size:18px text-nowrap">{{ $blog->title }}</span>
                                         <span class="" style="cursor: pointer" data-bs-toggle="dropdown" aria-haspopup="true"
                                             aria-expanded="false" v-pre>
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -85,7 +85,7 @@
                                     </div>
 
                                 </div>
-                                <p class="card-text">{{ $blog->body }}.</p>
+                                <p class="card-text text-nowrap">{{ $blog->body }}.</p>
                                 <p class="text-end mb-0" style="font-size: 12px">{{ $blog->published_at }}</p>
                             </div>
                         </div>
