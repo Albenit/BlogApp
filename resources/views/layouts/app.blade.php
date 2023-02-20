@@ -42,6 +42,8 @@
                         @auth
                             
                             <li class="my-auto">
+                                <div class="dropdown">
+
                                 <a style="color: black" id="navbarMore" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     Options
                                 </a>
@@ -54,6 +56,8 @@
                                         Categories
                                     </a>
                                 </div>
+                            </div>
+
                             </li>
                             <li class="nav-item dropdown">
                             

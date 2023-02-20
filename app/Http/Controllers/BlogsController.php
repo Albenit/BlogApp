@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Crypt;
 
 class BlogsController extends Controller
 {
-
+    // Function to create Blogs  
     public function createBlog(Request $req){
 
        $req->validate([
@@ -20,14 +20,18 @@ class BlogsController extends Controller
             'blog_image' => 'required',
         ]);
 
-        // try {
-            $image = $req->file('blog_image');
-            $filename = $image->getClientOriginalName();
+        try {
 
+            if($req->hasFile('blog_image')){
+                $image = $req->file('blog_image');
+                $filename = $image->getClientOriginalName();
+
+                Storage::disk('public')->put('imgs',$filename,$image);
+            }
             Blog::create([
                 'title' => $req->blog_title,
                 'body' => $req->blog_body,
-                'image' =>  Storage::disk('public')->put($filename, $image),
+                'image' => $filename,
                 'user_id' => Auth::user()->id,
                 'category_id' => $req->blog_category,
                 'published_at' => Carbon::now()
@@ -35,10 +39,10 @@ class BlogsController extends Controller
 
             return redirect()->route('home');
 
-        // } catch (\Exception $e) {
-        //     return $e->getMessage();
-        //     return redirect()->back()->with('error', 'An error occurred.');
-        // }
+        } catch (\Exception $e) {
+            return $e->getMessage();
+            return redirect()->back()->with('error', 'An error occurred.');
+        }
     }
 
     public function editBlogView($id){
