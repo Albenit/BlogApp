@@ -40,8 +40,12 @@
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
                         @auth
-                            
                             <li class="my-auto">
+                                <a style="color: black" id="navbarMore" class="nav-link" href="{{ url('/home') }}">
+                                    Home
+                                </a>
+                            </li>
+                            <li class="my-auto ms-2">
                                 <div class="dropdown">
 
                                 <a style="color: black" id="navbarMore" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -59,7 +63,7 @@
                             </div>
 
                             </li>
-                            <li class="nav-item dropdown">
+                            <li class="nav-item dropdown ms-3">
                             
                                 <a id="navbarDropdown" class="nav-link " href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     <img src="{{ url('uploads/pofile.jpg') }}" style="height: 35px; width:35px; border-radius:20px " class="card-img-top"/>

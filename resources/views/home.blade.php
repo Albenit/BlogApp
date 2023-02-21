@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="shadow-sm" style="background-color: #fffcf5">
+    <div class="shadow-sm" style="background-color: #f7f7f7">
         <div class="container">
             <div class="row ">
                 <div class="col-12 col-lg-7 my-auto">
@@ -57,7 +57,7 @@
                 @foreach ($blogs as $blog)
                     <div class="col-12 col-md-6 col-xl-3 mb-3">
                         <div class="card">
-                            <img src="{{ url('storage/' . $blog->image) }}" style="height: 200px;" class="card-img-top"
+                            <img src="{{ url('uploads/' . $blog->image) }}" style="height: 200px;" class="card-img-top"
                                 alt="Fissure in Sandstone" />
                             <div class="card-body">
                                 <div class="row">

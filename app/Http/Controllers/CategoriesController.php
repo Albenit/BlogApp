@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Crypt;
 
 class CategoriesController extends Controller
 {
+    // Function to return the View show Categories
     public function createCategoriesView(){
         try{
 
@@ -20,6 +21,7 @@ class CategoriesController extends Controller
         }
     }
 
+    // Function to create new Catgory  
     public function saveCategorie(Request $request){
 
         $request->validate([
@@ -37,6 +39,7 @@ class CategoriesController extends Controller
         }
     }
 
+    // Function to edit Catgory by Id
     public function updateCategorieById($id,Request $request){
         $request->validate([
             'category_name' => 'required|max:30',
@@ -56,6 +59,7 @@ class CategoriesController extends Controller
         }
     }
 
+    // Function to Delete Catgory by Id
     public function deleteCategorieById($id){
         try{
             $id = Crypt::decrypt($id);

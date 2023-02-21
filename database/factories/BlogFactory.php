@@ -20,7 +20,7 @@ class BlogFactory extends Factory
         return [
             'title' => $this->faker->name(),
             'body' => $this->faker->name(),
-            'image' => 'picture.jpg/nDOLQaotSz2ujpIMVUWoIFK26o51FfaT3WOVKEb7.jpg',
+            'image' => 'testimage.jpg',
             'user_id' => rand(1,2),
             'category_id' => rand(1,4),
             'published_at' => Carbon::now(),

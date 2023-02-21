@@ -6,7 +6,6 @@ use App\Models\Blog;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Crypt;
 
 class BlogsController extends Controller
@@ -25,9 +24,10 @@ class BlogsController extends Controller
             if($req->hasFile('blog_image')){
                 $image = $req->file('blog_image');
                 $filename = $image->getClientOriginalName();
-
-                Storage::disk('public')->put('imgs',$filename,$image);
+                $folder = public_path('/uploads');
+                $image->move($folder,$filename);
             }
+
             Blog::create([
                 'title' => $req->blog_title,
                 'body' => $req->blog_body,
@@ -45,6 +45,7 @@ class BlogsController extends Controller
         }
     }
 
+    // Function to return the View to edit blog  
     public function editBlogView($id){
         try{
             $id = Crypt::decrypt($id);
@@ -58,6 +59,7 @@ class BlogsController extends Controller
         }
     }
 
+    // Function to edit blog by Id
     public function editBlogById($id,Request $req){
 
         $req->validate([
@@ -71,13 +73,17 @@ class BlogsController extends Controller
 
             $blog = Blog::find($id);
 
-            $image = $req->file('blog_image');
-            $filename = $image->getClientOriginalName();
+            if($req->hasFile('blog_image')){
+                $image = $req->file('blog_image');
+                $filename = $image->getClientOriginalName();
+                $folder = public_path('/uploads');
+                $image->move($folder,$filename);
+            }
 
             $blog->update([
                 'title' => $req->blog_title,
                 'body' => $req->blog_body,
-                'image' =>  Storage::disk('local')->putFileAs('images', $image, $filename),
+                'image' =>  $filename,
                 'user_id' => Auth::user()->id,
                 'category_id' => $req->blog_category,
                 'published_at' => Carbon::now()
@@ -90,6 +96,8 @@ class BlogsController extends Controller
         }
     }
 
+
+    // Function to Delete blog by Id
     public function deleteBlogById($id){
         try{
             $id = Crypt::decrypt($id);
