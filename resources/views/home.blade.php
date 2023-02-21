@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title','Home')
 
 @section('content')
     <div class="shadow-sm" style="background-color: #f7f7f7">
